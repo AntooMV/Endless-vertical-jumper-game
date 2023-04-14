@@ -21,15 +21,6 @@ Proyecto integrado DAM
 ## 14/04/2023
 
 
-# 
-
-
-[TOC]
-
-
-
-
-
 # **Objetivos **
 
 
