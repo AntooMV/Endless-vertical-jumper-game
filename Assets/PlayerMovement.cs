@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 26f;
-    private float jumpingPower = 90f;
+    private float speed = 38f;
+    private float jumpingPower = 140f;
     private bool isFacingRight = true;
 
     private float coyoteTime = 0.2f;
@@ -17,10 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator animator;
+
 
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("h_speed", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("v_speed", rb.velocity.y);
+        animator.SetBool("isgrounded", IsGrounded());
 
         // Coyote time
         coyoteTimeCounter = IsGrounded() ? coyoteTime : coyoteTimeCounter -= Time.deltaTime;
@@ -43,15 +48,16 @@ public class PlayerMovement : MonoBehaviour
 
         Flip();
 
-        if (transform.position.x > 60)
+        if (transform.position.x > 90)
         {
-            transform.position = new Vector3(-60, transform.position.y, 0);
+            transform.position = new Vector3(-80, transform.position.y, 0);
         }
-        //na
-        if (transform.position.x < -60)
+        
+        if (transform.position.x < -90)
         {
-            transform.position = new Vector3(60, transform.position.y, 0);
+            transform.position = new Vector3(80, transform.position.y, 0);
         }
+
     }
 
     private void FixedUpdate()
@@ -61,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
     }
 
     private void Flip()

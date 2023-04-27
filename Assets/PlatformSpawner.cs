@@ -35,7 +35,7 @@ public class PlatformSpawner : MonoBehaviour
             var wanted = Random.Range(minTras, maxTras);
             var position = new Vector2(wanted, transform.position.y);
             GameObject gameObject = Instantiate(platformPrefab[Random.Range(0, platformPrefab.Length)], position, Quaternion.identity);
-            yield return new WaitForSeconds(secondSpawn * Time.deltaTime * 60);
+            yield return new WaitForSeconds(secondSpawn);
             Destroy(gameObject, 50f);
         }
     }
