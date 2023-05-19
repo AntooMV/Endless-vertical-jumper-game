@@ -40,6 +40,7 @@ public class CameraBehaviour : MonoBehaviour
         if (player.position.y < transform.position.y - 55)
         {
             gameManager.GameOver();
+            FindObjectOfType<AudioManager>().Play("Death");
         }
     }
 }
