@@ -51,4 +51,16 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  globalVolume: 1
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: e0f6a6324cd617a4680574e9d0aad9de, type: 3}
+    volume: 0.2
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  globalVolume: 0.5

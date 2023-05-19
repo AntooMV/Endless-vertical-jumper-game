@@ -36,4 +36,7 @@ public class LeaderboardMenu : MonoBehaviour
         });
         yield return new WaitWhile(() => !done);
     }
+
+    public void Click() {FindObjectOfType<AudioManager>().Play("Click");}
+
 }

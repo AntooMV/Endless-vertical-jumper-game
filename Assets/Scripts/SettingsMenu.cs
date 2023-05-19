@@ -16,11 +16,6 @@ public class SettingsMenu : MonoBehaviour
         Load();
     }
 
-    void ChangeVolume()
-    {
-        AudioListener.volume = volumeSlider.value;
-    }
-
     void Load()
     {
         usernameField.text = PlayerPrefs.GetString("PlayerName");
@@ -32,4 +27,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", usernameField.text);
         PlayerPrefs.SetFloat("GlobalVolume", volumeSlider.value);
     }
+
+    public void Click() {FindObjectOfType<AudioManager>().Play("Click");}
+
 }

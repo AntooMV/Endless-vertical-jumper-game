@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     [Range(0f, 1f)]
-    public float globalVolume = 1f;
+    public float globalVolume = .5f;
 
 
     void Start()
@@ -17,7 +17,8 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 1f);
+        globalVolume = PlayerPrefs.GetFloat("GlobalVolume", .5f);
+        instance.GetComponent<AudioSource>().volume = globalVolume;
     }
 
     void Awake()

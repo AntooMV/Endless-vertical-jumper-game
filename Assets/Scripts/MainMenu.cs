@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void Click() {FindObjectOfType<AudioManager>().Play("Click");}
+
     public void QuitGame()
     {
         Debug.Log("Salir");

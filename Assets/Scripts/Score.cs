@@ -7,12 +7,14 @@ public class Score : MonoBehaviour
     private double pos, timedScore = 0f;
     [SerializeField] TMP_Text scoreText;
 
-    // Update is called once per frame
     void Update()
     {
-        pos = player.position.y > pos ? player.position.y : pos;
-        timedScore += .0167f;
-        score = (int)(timedScore + pos);
-        scoreText.text = score.ToString("0");
+        if (!PauseMenu.isPaused)
+        {
+            pos = player.position.y > pos ? player.position.y : pos;
+            timedScore += .0167f;
+            score = (int)(timedScore + pos);
+            scoreText.text = score.ToString("0");        
+        }
     }
 }

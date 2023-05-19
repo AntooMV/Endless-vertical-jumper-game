@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 public class PlayerBehaviour : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 38f;
-    private float jumpingPower = 140f;
+    [SerializeField] float speed = 45f;
+    [SerializeField] float jumpingPower = 100f;
     private bool isFacingRight = true;
 
-    private float coyoteTime = 0.2f;
+    private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
 
-    private float jumpBufferTime = 0.2f;
+    private float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private BoxCollider2D groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Animator animator;
 
@@ -28,9 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
         animator.SetFloat("v_speed", rb.velocity.y);
         animator.SetBool("isgrounded", IsGrounded());
 
-        // Coyote time
         coyoteTimeCounter = IsGrounded() ? coyoteTime : coyoteTimeCounter -= Time.deltaTime;
-        // Jump Buffer
         jumpBufferCounter = Input.GetButtonDown("Jump") ? jumpBufferTime : jumpBufferCounter -= Time.deltaTime;
 
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
@@ -38,6 +36,8 @@ public class PlayerBehaviour : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             coyoteTimeCounter = 0f;
             jumpBufferCounter = 0f;
+
+            FindObjectOfType<AudioManager>().Play("PlayerJump");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -68,7 +68,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.3f, groundLayer);
+        return groundCheck.IsTouchingLayers(groundLayer);
     }
 
     private void Flip()

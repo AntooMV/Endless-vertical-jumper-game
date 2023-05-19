@@ -29,18 +29,17 @@ public class Leaderboard : MonoBehaviour
 
                 for (int i = 0; i < members.Length; i++)
                 {
-                    tempPlayerRanks += members.Rank + "\n";
                     tempPlayerIds += members[i].member_id + "\n";
                     tempPlayerNames += members[i].player.name != "" ? members[i].player.name : "Guest";
                     tempPlayerScores += members[i].score + "\n";
                     tempPlayerNames += "\n";
                 }
-                for (int i = members.Length + 1 ; i < 101 ; i++)
+                for (int i = 0 ; i < 100 ; i++)
                 {
                     tempPlayerRanks += i.ToString() + "\n";
-                    tempPlayerIds += "???\n";
-                    tempPlayerNames += "???\n";
-                    tempPlayerScores += "???\n";
+                    tempPlayerIds += "--------\n";
+                    tempPlayerNames += "--------\n";
+                    tempPlayerScores += "--------\n";
                 }
 
                 displayedRanks.text = tempPlayerRanks;
