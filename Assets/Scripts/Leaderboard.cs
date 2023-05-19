@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using LootLocker.Requests;
 using TMPro;
+using System.Linq;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -34,13 +35,11 @@ public class Leaderboard : MonoBehaviour
                     tempPlayerScores += members[i].score + "\n";
                     tempPlayerNames += "\n";
                 }
-                for (int i = 0 ; i < 100 ; i++)
-                {
-                    tempPlayerRanks += i.ToString() + "\n";
-                    tempPlayerIds += "--------\n";
-                    tempPlayerNames += "--------\n";
-                    tempPlayerScores += "--------\n";
-                }
+                for (int i = 1 ; i < 101 ; i++) tempPlayerRanks += i.ToString() + "\n";
+
+                tempPlayerIds += string.Concat(Enumerable.Repeat("--------\n", 100 - members.Length));
+                tempPlayerNames += string.Concat(Enumerable.Repeat("--------\n", 100 - members.Length));
+                tempPlayerScores += string.Concat(Enumerable.Repeat("--------\n", 100 - members.Length));
 
                 displayedRanks.text = tempPlayerRanks;
                 displayedIds.text = tempPlayerIds;
